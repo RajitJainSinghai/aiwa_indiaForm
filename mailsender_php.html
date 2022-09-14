@@ -1,0 +1,234 @@
+<?php 
+require("/home1/voilazrt/aiwa.voilastudio.in/PHPMailer_5.2.0/class.phpmailer.php");
+if(isset($_POST['submit']))
+{
+    $fname=$_POST['fname']; 
+  $lname=$_POST['lname'];
+    $mobno=$_POST['mobile-no'];
+    $email=$_POST['email'];
+    $prouducts=$_POST['products'];
+    $city=$_POST['city'];
+    $state=$_POST['state'];
+    $date=$_POST['date'];
+    $pincode=$_POST['pincode'];
+    $store=$_POST['storeName'];
+    
+    
+     if(isset($_FILES['image'])){
+      $errors= array();
+      $file_name = $_FILES['image']['name'];
+      $file_size = $_FILES['image']['size'];
+      $file_tmp = $_FILES['image']['tmp_name'];
+      $file_type = $_FILES['image']['type'];
+      $file_ext=strtolower(end(explode('.',$_FILES['image']['name'])));
+      
+      $expensions= array("jpeg","jpg","png","pdf");
+      
+      if(in_array($file_ext,$expensions)=== false){
+         $errors[]="extension not allowed, please choose a PDF, JPEG or PNG file.";
+      }
+      
+      if($file_size > 2097152) {
+         $errors[]='File size must be excately 2 MB';
+      }
+      
+      if(empty($errors)==true) {
+         move_uploaded_file($file_tmp,"uploads/".$file_name); //The folder where you would like your file to be saved
+         
+      }else{
+         print_r($errors);
+      }
+   }
+    
+
+	
+    
+$mail = new PHPMailer();
+$mail = new PHPMailer();
+
+$mail->IsSMTP();             // set mailer to use SMTP
+$mail->Host = "localhost";  // specify main and backup server
+$mail->SMTPAuth = true;     // turn on SMTP authentication
+$mail->Port = 587; // or 587
+$mail->Username = "info@voilastudio.in";  // SMTP username (message sent from this email id)
+$mail->Password = "Intenim@012018"; // SMTP password
+
+$mail->From = "info@voilastudio.in";
+$mail->FromName = "Voilastudio";
+
+$mail->AddAddress("gunjeet.singh@intenim.com");                  // name is optional(all the message are received to this email id)
+$mail->addAttachment("uploads/".$file_name);
+
+$mail->WordWrap = 50;                                 // set word wrap to 50 characters
+
+$mail->IsHTML(true);                              // set email format to HTML
+
+$mail->Subject = "AIWA INDIA PROMOTION ENQUIRY";
+$mail->Body    = " Hi Team, <br> A Participant has Applied for promotional Offer Campaign requested From aiwaindia.com <br> 
+                    Name : $fname $lname <br> Mobile No : $mobno  <br> Email : $email <br> Product : $prouducts  <br> City : $city  <br> State : $state <br> Pincode : $pincode <br> Date : $date  <br> Store : $store  <br><br> Thanks & Regards <br>Tech Team";
+$mail->AltBody = "This is the body in plain text for non-HTML mail clients";
+
+
+//$mail->AddEmbeddedImage(dirname(_FILE_) . '/image_mail/Capture_1111.JPG', '13');
+
+if(!$mail->Send())
+{
+   echo "Message could not be sent. <p>";
+   echo "Mailer Error: " . $mail->ErrorInfo;
+   exit;
+} 
+
+
+$mail = new PHPMailer();
+$mail = new PHPMailer();
+
+$mail->IsSMTP();             // set mailer to use SMTP
+$mail->Host = "localhost";  // specify main and backup server
+$mail->SMTPAuth = true;     // turn on SMTP authentication
+$mail->Port = 587; // or 587
+$mail->Username = "info@voilastudio.in";  // SMTP username
+$mail->Password = "Intenim@012018"; // SMTP password
+
+$mail->From = "info@voilastudio.in";
+$mail->FromName = "Voilastudio";
+
+$mail->AddAddress("$email");                  
+
+
+$mail->WordWrap = 50;                                 // set word wrap to 50 characters
+
+$mail->IsHTML(true);                              // set email format to HTML
+
+$mail->Subject = "AIWA INDIA PROMOTION PARTICIPATION";
+$mail->Body    = " Hi $fname $lname, <br> Thank you applying in our promotional Offer <br> 
+                    Your request has been submited succesfully we will Update you regarding Offer   <br><br> Thanks & Regards <br> TEAM AIWA INDIA ";
+$mail->AltBody = "This is the body in plain text for non-HTML mail clients";
+
+
+
+if(!$mail->Send())
+{
+   echo "Message could not be sent. <p>";
+   echo "Mailer Error: " . $mail->ErrorInfo;
+   exit;
+} 
+
+
+
+header("Location: https://aiwa.voilastudio.in/thankyou.php");
+     
+}    
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIWAINDIA</title>
+    <script src="./promo-aiwa.js"></script>
+    <link rel="stylesheet" href="./promo-aiwa.css">
+</head>
+<body>
+    <!-- /***************** Banner ************************/ -->
+    <div class="form_banner">
+        <img class="banner_img" src="./img/banner_img.png" alt="">
+
+    </div>
+
+    <!-- /***************** starting of the Form ******************/ -->
+    <div class="graphics_form_wrap">
+        <div class="graphics_form">
+            <form action="#" method="POST" enctype="multipart/form-data" >
+                <p id="graphics_form_p">Please write your name</p>
+                <div class="graphics_form_name">
+                <input type="text" id="fname" name="fname" value="" placeholder="first name" required><br>
+                <input type="text" id="lname" name="lname" value="" placeholder="last_name" required><br><br>
+               
+            </div>
+            <p id="graphics_form_p">Please write your mobile no.</p>
+            <div class="graphics_form_name">
+            <input type="number" id="mobile" name="mobile-no" onkeyup="validate()" value="" placeholder="10 digit mobile number" required><br>
+        </div>
+        <p id="graphics_form_p">Please write your email</p>
+            <div class="graphics_form_name">
+            <input type="email" id="mobile" name="email"  value="" placeholder="abc@gmail.com" required><br>
+        </div> 
+        <p id="graphics_form_p">Please choose your product</p>
+
+        <select name="products" id="product_dropDown">
+            <option id="dropDown_inner" value="product_list">Product_list</option>
+    <option value="AIWA MAGNIFIQ A32HDX1">AIWA MAGNIFIQ A32HDX1</option>
+    <option value="AIWA MAGNIFIQ A43FHDX1">AIWA MAGNIFIQ A43FHDX1</option>
+    <option value="Aiwa MAGNIFIQ A43UHDX3">AIWA MAGNIFIQ A43UHDX3</option>
+    <option value="Aiwa MAGNIFIQ A50UHDX3">AIWA MAGNIFIQ A50UHDX3</option>
+    <option value="Aiwa MAGNIFIQ A55UHDX2">AIWA MAGNIFIQ A55UHDX2</option>
+    <option value="Aiwa MAGNIFIQ A55UHDX3">AIWA MAGNIFIQ A55UHDX3</option>
+    <option value="Aiwa MAGNIFIQ A65UHDX2">AIWA MAGNIFIQ A65UHDX2</option>
+    <option value="MI-X 150 Retro Plus X">MI-X 150 Retro Plus X</option>
+    <option value="MI-X 450 Pro Enigma (Rose Gold)">MI-X 450 Pro Enigma (Rose Gold)</option>
+    <option value="RS-X 60 Diviner Ace">RS-X 60 Diviner Ace</option>
+    <option value="SB X-350 A">SB X-350 A</option>
+    <option value="SB-X30 (Black)">SB-X30 (Black)</option>
+    <option value="SB-X30 (Black)">SB-X30 (Black)</option>
+    <option value="SB-X30 (White)">SB-X30 (White)</option>
+    <option value="SBX-350 J">SBX-350 J</option>
+    <option value="AT-80XFANC (Black)">AT-80XFANC (Black)</option>
+    <option value="AT-80XFANC(White)">AT-80XFANC(White)</option>
+    <option value="AT-X80E(Black)">AT-X80E(Black)</option>
+    <option value="AT-X80E(White)">AT-X80E(White)</option>
+    <option value="ESBT 401 Ultralight Neckband">ESBT 401 Ultralight Neckband</option>
+    <option value="ESBT 460 Quad Driver Neckband">ESBT 460 Quad Driver Neckband</option>
+    <option value="ESTM 51- Silver">ESTM 51- Silver</option>
+    <option value="ESTM-101 (Wired), Black">ESTM-101 (Wired), Black</option>
+    <option value="ESTM-101 (Wired), Titan Grey">ESTM-101 (Wired), Titan Grey</option>
+    <option value="ESTM-51 Earphones">ESTM-51 Earphones</option>
+          </select> <br> <br>
+
+          <div class="city&state">
+            <div class="citys">
+        <p id="graphics_form_p">City</p>
+        <input type="text" id="city" name="city" value="" placeholder="city" required>
+            </div>
+            <div class="states">
+                <p id="graphics_form_p">State</p>
+                <input type="text" id="state" name="state" value="" placeholder="state" required>
+                    </div>
+          </div>
+          <br>
+        <div class="city&state">
+            <div class="citys">
+        <p id="graphics_form_p">Date of Purchase</p>
+        <input type="date" id="date" name="date" value="" placeholder="date of purchase" required>
+            </div>
+            <div class="states">
+                <p id="graphics_form_p">Pin-code</p>
+                
+                <input type="number" id="pincode" value="" name="pincode" onkeyup="validate_pin()"  value="" placeholder="223345" required><br>
+            </div> 
+          </div>
+          <br>
+          <p id="graphics_form_p">Please write your Store Name</p>
+          <div class="graphics_form_name">
+          <input type="text" id="storeName" value="" name="storeName"   value="" placeholder="digital india mart" required><br>
+      </div> 
+      <br>
+          <p id="graphics_form_p">Please Upload Invoice(pdf, jpeg, png upto 2 MB)</p>
+          <div class="graphics_form_name">
+          <input type="file" id="upload" value="" name="image"  required><br>
+      </div>  
+          <br>
+
+          <button id="submitButton" type="submit" name="submit" >Submit</button>
+              </form> 
+        </div>
+        
+    </div>
+    <button class="collapsible">Open Collapsible</button>
+<div class="content">
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+</div>
+    <script src="./ham.js"></script>
+</body>
+</html>

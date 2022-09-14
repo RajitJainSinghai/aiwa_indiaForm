@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./ham.js"></script>
+    <link rel="stylesheet" href="./ham.css">
+</head>
+<body>
+    <!-- /***************** Banner ************************/ -->
+    <div class="form_banner">
+        <img class="banner_img" src="./img/banner_img.png" alt="">
+
+    </div>
+
+    <!-- /***************** starting of the Form ******************/ -->
+    <div class="graphics_form_wrap">
+        <div class="graphics_form">
+            <form action="./thankyou.html">
+                <p id="graphics_form_p">Please write your name</p>
+                <div class="graphics_form_name">
+                <input type="text" id="fname" name="fname" value="" placeholder="first name" required><br>
+                <input type="text" id="lname" name="lname" value="" placeholder="last_name" required><br><br>
+               
+            </div>
+            <p id="graphics_form_p">Please write your mobile no.</p>
+            <div class="graphics_form_name">
+            <input type="number" id="mobile" name="mobile no." onkeyup="validate()" value="" placeholder="10 digit mobile number" required><br>
+        </div>
+        <p id="graphics_form_p">Please write your email</p>
+            <div class="graphics_form_name">
+            <input type="email" id="mobile" name="mobile no."  value="" placeholder="abc@gmail.com" required><br>
+        </div> 
+        <p id="graphics_form_p">Please choose your product</p>
+
+        <select name="cars" id="product_dropDown">
+            <option id="dropDown_inner" value="product_list">Product_list</option>
+            <option id="dropDown_inner" value="saab">Saab</option>
+            <option id="dropDown_inner" value="mercedes">Mercedes</option>
+            <option id="dropDown_inner" value="audi">Audi</option>
+          </select> <br> <br>
+
+          <div class="city&state">
+            <div class="citys">
+        <p id="graphics_form_p">City</p>
+        <input type="text" id="city" name="city" value="" placeholder="city" required>
+            </div>
+            <div class="states">
+                <p id="graphics_form_p">State</p>
+                <input type="text" id="state" name="state" value="" placeholder="state" required>
+                    </div>
+          </div>
+          <br>
+        <div class="city&state">
+            <div class="citys">
+        <p id="graphics_form_p">Date of Purchase</p>
+        <input type="date" id="date" name="date" value="" placeholder="date of purchase" required>
+            </div>
+            <div class="states">
+                <p id="graphics_form_p">Pin-code</p>
+                
+                <input type="number" id="pincode" value="" name="pincode" onkeyup="validate_pin()"  value="" placeholder="223345" required><br>
+            </div> 
+          </div>
+          <br>
+          <p id="graphics_form_p">Please write your Store Name</p>
+          <div class="graphics_form_name">
+          <input type="text" id="storeName" value="" name="storeName"   value="" placeholder="digital india mart" required><br>
+      </div> 
+      <br>
+          <p id="graphics_form_p">Please Upload Invoice(pdf, jpeg, png upto 2 MB)</p>
+          <div class="graphics_form_name">
+          <input type="file" id="upload" value="" name="upload"  required><br>
+      </div> 
+          <br>
+
+          <button id="submitButton" type="submit" formmethod="get">Submit</button>
+              </form> 
+        </div>
+        
+    </div>
+    <button class="collapsible">Open Collapsible</button>
+<div class="content">
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+</div>
+    <script src="./ham.js"></script>
+</body>
+</html>

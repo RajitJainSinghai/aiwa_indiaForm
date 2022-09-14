@@ -1,0 +1,151 @@
+body {
+margin: 0;
+padding: 0;
+background-color: #77777717;
+  }
+  
+  img.banner_img {
+    width: 100%;
+    
+}
+  .graphics_form_wrap {
+    max-width: 665px;
+    padding: 1rem;
+    position: relative;
+    background: linear-gradient(to right, rgba(147,220,218,255), #fc6f63);
+    padding: 15px;
+    margin: 10px auto;
+
+  }
+  
+  .graphics_form {
+    background: white;
+    color: black;
+    padding: 2rem;
+    height: 700px;
+  }
+  .graphics_form_name {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin: 5px 0;
+
+}
+input#fname, input#lname, input#mobile,input#pincode, input#storeName{
+    width: 40%;
+    padding: 0 20px;
+    font-size: 12px;
+    text-transform: uppercase;
+    height: 30px;
+
+}
+p#graphics_form_p {
+    font-size: 20px;
+    margin: 5px 0;
+}
+.dropbtn {
+  color: #75758b;
+  padding: 8px 22px;
+  font-size: 16px;
+  border: 1px solid;
+  cursor: pointer;
+  width: 294px;
+  text-align: left;
+  background-color: white;
+}
+select#product_dropDown {
+  width: 284px;
+  padding: 8px 17px;
+  text-transform: uppercase;
+  font-size: 13px;
+  color: grey;
+  border-radius: 5px
+}
+.city\&state {
+  display: flex;
+  width: 100%;
+}
+.citys,.states {
+  width: 100%;
+}
+input#city, input#state, input#date, input#pincode{
+  width: 80%;
+  padding: 0 20px;
+  font-size: 12px;
+  text-transform: uppercase;
+  height: 30px;
+}
+input[type="file"] {
+  width: 250px;
+  font-size: 14px;
+  border: 1px solid;
+  padding: 5px 18px;
+}
+a#submit {
+  color: black;
+  font-size: 17px;
+  text-decoration: none;
+  /* border: 1px solid; */
+  padding: 10px 60px;
+  background: #80808057;
+  border-radius: 5px;
+}
+button#submitButton {
+  padding: 8px 50px;
+  font-size: 15px;
+  cursor: pointer;
+}
+button#submitButton:hover {
+  transition: 0.3s;
+  border: 0;
+}
+@media screen and (max-width: 600px) {
+  select#product_dropDown {
+    width: 100%;
+    padding: 8px 16px;
+  
+  }
+  input#fname, input#lname, input#mobile, input#storeName {
+    width: 100%;
+  }
+}
+
+/***************** collapasable button ***********/
+
+.collapsible {
+  background-color: #77777717;
+  color: black;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
+/* .active, .collapsible:hover {
+  background-color: #555;
+} */
+
+.collapsible:after {
+  content: '\002B';
+  color: black;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+  font-size: 20px;
+
+}
+
+.active:after {
+  content: "\2212";
+}
+
+.content {
+  padding: 0 18px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  background-color: #ffffff;
+}
