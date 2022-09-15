@@ -108,6 +108,18 @@ button#submitButton:hover {
   input#fname, input#lname, input#mobile, input#storeName {
     width: 100%;
   }
+  input#date,input#pincode,input#state {
+    padding: 0 8px;
+  }
+  p#graphics_form_p {
+    font-size: 17px;
+  }
+  .graphics_form {
+    height: 720px;
+}
+select#product_dropDown {
+  width: 183px;
+}
 }
 
 /***************** collapasable button ***********/
